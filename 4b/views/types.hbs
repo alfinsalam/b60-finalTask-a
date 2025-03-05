@@ -1,0 +1,39 @@
+{{#> layout currentPage="Types"}}
+  <h2 class="text-center">ADD NEW TYPE</h2>
+  
+  <!-- Form tambah type -->
+  <form action="/type" method="POST" class="mb-4">
+    <label for="name">Nama Tipe</label>
+    <input type="text" name="name" required class="form-control mb-2" />
+    <button type="submit" class="btn btn-warning">Submit</button>
+  </form>
+
+  <!-- Tabel daftar type -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>No</th>
+        <th>Nama Type</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each types}}
+      <tr>
+        <td>{{@index}}</td>
+        <td>{{this.name}}</td>
+        <td>
+          <a href="/type/{{this.id}}/edit" class="btn btn-primary">Edit</a>
+          <form action="/type/{{this.id}}/delete" method="POST" style="display:inline;">
+            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {{else}}
+      <tr>
+        <td colspan="3" class="text-center">No types available.</td>
+      </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{/layout}}

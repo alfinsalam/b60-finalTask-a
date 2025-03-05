@@ -1,0 +1,39 @@
+{{#> layout currentPage="Home"}}
+  <div class="bg-preview">
+    {{#if user}}
+    <div class="add">
+      <a class="btn btn-primary" href="/heroes/create">Add Hero</a>
+    </div>
+    <div class="add">
+      <a class="btn btn-primary" href="/type/create">Add Type</a>
+    </div>
+    {{/if}}
+    <h2 class="heroes-title">My Heroes</h2>
+    <div class="container-preview">
+      {{#if heroes.length}}  
+        {{#each heroes}}
+          <div class="card-preview">
+            <div class="card-image">
+              <img class="card-img" src="{{this.photo}}" alt="Hero Image" />
+            </div>
+            <div class="card-content">
+              <a href="/heroes-detail/{{this.id}}" style="text-decoration: none; color:black">
+                <h2 class="card-title">{{this.name}}</h2>
+              </a>
+              <p class="card-type">Type: {{this.type.name}}</p>
+              
+              <div class="card-actions">
+                  <a class="btn btn-info" href="/heroes-detail/{{this.id}}"> Get Detail</a>
+                
+              </div>
+            </div>
+          </div>
+        {{/each}}
+      {{else}}
+        <p id="no-data-message" style="color: red; text-align: center; font-size: 18px; margin-top: 50px;">
+          No heroes available.
+        </p>
+      {{/if}}
+    </div>
+  </div>
+{{/layout}}

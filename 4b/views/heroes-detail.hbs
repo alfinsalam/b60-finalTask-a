@@ -1,0 +1,41 @@
+{{#> layout currentPage="Hero Detail"}}
+    <div class="container-detail">
+        <div class="card-detail">
+            <div class="card-image">
+                <img class="card-img" src="{{#if hero.photo}}{{hero.photo}}{{else}}https://picsum.photos/200{{/if}}" alt="Hero Image" />
+            </div>
+            <div class="card-content">
+                <h2 class="card-title">{{hero.name}}</h2>
+                <p class="card-type">Type: {{#if hero.type}}{{hero.type.name}}{{else}}Unknown{{/if}}</p>
+                <p class="card-description">{{hero.description}}</p>
+                <div class="card-actions">
+                    <a class="btn btn-info" href="/heroes">Back to Home</a>
+                    {{#if user}}
+                        <a class="btn btn-primary" href="/heroes/{{hero.id}}/edit">Edit</a>
+                        <form action="/heroes/{{hero.id}}/delete" method="POST" style="display:inline;">
+                            <button onclick="confirmDeleteHero(event, {{hero.id}})" class="btn btn-danger" type="submit">Delete</button>
+                        </form>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+  function confirmDeleteHero(event, heroId) {
+    event.preventDefault();
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, delete it!"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        document.getElementById("deleteForm").submit();
+      }
+    });
+  }
+</script>
+{{/layout}}
