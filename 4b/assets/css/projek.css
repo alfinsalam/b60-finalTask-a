@@ -188,7 +188,7 @@ input[type="file"]:hover {
   font-weight: bold;
 }
 
-.container-prview {
+.container-preview {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -225,7 +225,7 @@ input[type="file"]:hover {
 .card-image {
   margin: auto;
   width: 200px;
-  height: 200px;
+  height: 300px;
 }
 
 .card-img {

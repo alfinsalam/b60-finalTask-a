@@ -12,7 +12,7 @@
                     <a class="btn btn-info" href="/heroes">Back to Home</a>
                     {{#if user}}
                         <a class="btn btn-primary" href="/heroes/{{hero.id}}/edit">Edit</a>
-                        <form action="/heroes/{{hero.id}}/delete" method="POST" style="display:inline;">
+                        <form id="deleteForm-{{hero.id}}" action="/heroes/{{hero.id}}/delete" method="POST" style="display:inline;">
                             <button onclick="confirmDeleteHero(event, {{hero.id}})" class="btn btn-danger" type="submit">Delete</button>
                         </form>
                     {{/if}}
@@ -22,20 +22,20 @@
     </div>
 <script>
   function confirmDeleteHero(event, heroId) {
-    event.preventDefault();
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#d33",
-      cancelButtonColor: "#3085d6",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        document.getElementById("deleteForm").submit();
-      }
-    });
-  }
+  event.preventDefault();
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Yes, delete it!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      document.getElementById(`deleteForm-${heroId}`).submit();
+    }
+  });
+}
 </script>
 {{/layout}}

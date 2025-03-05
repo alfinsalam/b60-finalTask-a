@@ -26,4 +26,4 @@ function gambarSegitigaSiku(sisi) {
     }
 }
 
-gambarSegitigaSiku(7);
+gambarSegitigaSiku(5);
